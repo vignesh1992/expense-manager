@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - echo installing dependencies...
+      - npm install
+      - npm install @angular/cli -g
+  build:
+    commands:
+      - echo attempting to build
+      - pwd
+      - ng build --prod
+  post_build:
+    commands:
+      - echo in postbuild
+      - pwd
+      - ls -la
+      - cd dist/
+      - ls -la
+      - cd ..
+artifacts:
+  files:
+    - "**/*"
+  base-directory: 'dist/expense-manager'
+  discard-paths: yes
